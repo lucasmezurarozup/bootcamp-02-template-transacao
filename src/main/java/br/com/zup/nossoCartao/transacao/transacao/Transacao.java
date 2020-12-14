@@ -20,4 +20,14 @@ public class Transacao {
     @PastOrPresent
     private LocalDateTime efetivadaEm;
 
+    @Override
+    public String toString() {
+        return "Transacao{" +
+                "numeroTransacao='" + numeroTransacao + '\'' +
+                ", valor=" + valor +
+                ", estabelecimento=" + estabelecimento +
+                ", cartao=" + cartao +
+                ", efetivadaEm=" + efetivadaEm +
+                '}';
+    }
 }
