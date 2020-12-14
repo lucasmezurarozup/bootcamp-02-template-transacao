@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,10 +16,11 @@ import java.util.List;
 public class TransacaoController {
 
     @Autowired
-    private ListenerTransacao listenerTransacao;
+    private TransacaoRepository transacaoRepository;
 
-    @GetMapping("/")
-    public ResponseEntity<?> verificaTransacoes() {
-        return null;
+    @GetMapping("/cartao/{id}")
+    public ResponseEntity<?> verificaTransacoes(@PathVariable("id") String numeroCartao) {
+        List<Transacao> transacaoList = transacaoRepository.findTop10ByCartaoId(numeroCartao);
+        return ResponseEntity.ok(transacaoList);
     }
 }

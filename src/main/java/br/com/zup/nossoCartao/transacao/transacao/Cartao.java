@@ -1,15 +1,26 @@
 package br.com.zup.nossoCartao.transacao.transacao;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.UUID;
 
+@Entity
+@Table(
+        name = "cartoes"
+)
 public class Cartao {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long internalId;
+
     @NotBlank
-    private String numeroCartao;
+    private String id;
     @NotBlank
     private String email;
 
-    public Cartao(@NotBlank String numeroCartao, @NotBlank String email) {
-        this.numeroCartao = numeroCartao;
+    public Cartao(@NotBlank String id, @NotBlank String email) {
+        this.id = id;
         this.email = email;
     }
 
@@ -18,11 +29,26 @@ public class Cartao {
 
     }
 
-    public String getNumeroCartao() {
-        return numeroCartao;
+
+
+    public Long getInternalId() {
+        return internalId;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getEmail() {
         return email;
+    }
+
+    @Override
+    public String toString() {
+        return "Cartao{" +
+                "internalId=" + internalId +
+                ", id='" + id + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

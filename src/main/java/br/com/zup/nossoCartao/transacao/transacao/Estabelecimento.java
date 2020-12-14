@@ -1,8 +1,18 @@
 package br.com.zup.nossoCartao.transacao.transacao;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
+@Entity
+@Table(
+        name = "estabelecimentos"
+)
 public class Estabelecimento {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     @NotBlank
     private String nome;
     @NotBlank
@@ -31,5 +41,14 @@ public class Estabelecimento {
 
     public String getEndereco() {
         return endereco;
+    }
+
+    @Override
+    public String toString() {
+        return "Estabelecimento{" +
+                "nome='" + nome + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", endereco='" + endereco + '\'' +
+                '}';
     }
 }
